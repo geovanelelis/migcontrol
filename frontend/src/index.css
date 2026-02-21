@@ -1,0 +1,54 @@
+@import 'tailwindcss';
+
+@theme {
+  /* ===============================
+     PRIMARY (AZUL MIGCONTROL)
+  =============================== */
+
+  --primary-0: #e6f1fb;
+  --primary-1: #b3d3f4;
+  --primary-2: #66a8e8;
+  --primary-3: #0068d5;
+  --primary-4: #0052aa;
+  --primary-5: #003b7a;
+
+  /* ===============================
+     ORANGE (CTA)
+  =============================== */
+
+  --orange-0: #fff1e6;
+  --orange-1: #ffd0a8;
+  --orange-2: #ffa552;
+  --orange-3: #ff7a00;
+  --orange-4: #cc6200;
+  --orange-5: #994900;
+
+  /* ===============================
+     NEUTRAL SCALE
+  =============================== */
+
+  --neutral-0: oklch(98.5% 0 0);
+  --neutral-10: oklch(96.7% 0.001 286.375);
+  --neutral-20: oklch(92% 0.004 286.32);
+  --neutral-30: oklch(87.1% 0.006 286.286);
+  --neutral-40: oklch(70.5% 0.015 286.067);
+  --neutral-50: oklch(55.2% 0.016 285.938);
+  --neutral-60: oklch(44.2% 0.017 285.786);
+  --neutral-70: oklch(37% 0.013 285.805);
+  --neutral-80: oklch(27.4% 0.006 286.033);
+  --neutral-90: oklch(21% 0.006 285.885);
+  --neutral-100: oklch(14.1% 0.005 285.823);
+
+  /* ===============================
+     TYPOGRAPHY
+  =============================== */
+
+  --font-primary: 'Inter', sans-serif;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--neutral-0);
+  color: var(--neutral-90);
+  -webkit-font-smoothing: antialiased;
+}
