@@ -5,45 +5,48 @@
      PRIMARY (AZUL MIGCONTROL)
   =============================== */
 
-  --primary-0: #e6f1fb;
-  --primary-1: #b3d3f4;
-  --primary-2: #66a8e8;
-  --primary-3: #0068d5;
-  --primary-4: #0052aa;
-  --primary-5: #003b7a;
+  --color-primary-0: oklch(0.88 0.07 236.5);
+  --color-primary-1: oklch(0.74 0.16 236.2);
+  --color-primary-2: oklch(0.55 0.22 259.7);
+  --color-primary-3: oklch(0.48 0.18 259.6);
+  --color-primary-4: oklch(0.29 0.07 259.9);
 
   /* ===============================
      ORANGE (CTA)
   =============================== */
 
-  --orange-0: #fff1e6;
-  --orange-1: #ffd0a8;
-  --orange-2: #ffa552;
-  --orange-3: #ff7a00;
-  --orange-4: #cc6200;
-  --orange-5: #994900;
+  --color-orange-0: oklch(0.92 0.06 56.7);
+  --color-orange-1: oklch(0.73 0.18 63.9);
+  --color-orange-2: oklch(0.62 0.16 55.7);
 
   /* ===============================
      NEUTRAL SCALE
   =============================== */
 
-  --neutral-0: oklch(98.5% 0 0);
-  --neutral-10: oklch(96.7% 0.001 286.375);
-  --neutral-20: oklch(92% 0.004 286.32);
-  --neutral-30: oklch(87.1% 0.006 286.286);
-  --neutral-40: oklch(70.5% 0.015 286.067);
-  --neutral-50: oklch(55.2% 0.016 285.938);
-  --neutral-60: oklch(44.2% 0.017 285.786);
-  --neutral-70: oklch(37% 0.013 285.805);
-  --neutral-80: oklch(27.4% 0.006 286.033);
-  --neutral-90: oklch(21% 0.006 285.885);
-  --neutral-100: oklch(14.1% 0.005 285.823);
+  --color-neutral-0: #ffffff;
+  --color-neutral-5: oklch(98.5% 0 0);
+  --color-neutral-10: oklch(96.7% 0.001 286.375);
+  --color-neutral-20: oklch(92% 0.004 286.32);
+  --color-neutral-30: oklch(87.1% 0.006 286.286);
+  --color-neutral-40: oklch(70.5% 0.015 286.067);
+  --color-neutral-50: oklch(55.2% 0.016 285.938);
+  --color-neutral-60: oklch(44.2% 0.017 285.786);
+  --color-neutral-70: oklch(37% 0.013 285.805);
+  --color-neutral-80: oklch(27.4% 0.006 286.033);
+  --color-neutral-90: oklch(21% 0.006 285.885);
+  --color-neutral-100: oklch(14.1% 0.005 285.823);
+
+  /* ===============================
+     CORES LOGOS
+  =============================== */
+  --color-migcontrol-color: oklch(0.55 0.22 259.7);
+  --color-softmig-color: oklch(0.407 0.106 248.6);
 
   /* ===============================
      TYPOGRAPHY
   =============================== */
 
-  --font-primary: 'Inter', sans-serif;
+  --font-primary: 'Montserrat', sans-serif;
 }
 
 body {
