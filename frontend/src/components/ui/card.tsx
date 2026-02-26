@@ -54,7 +54,7 @@ export const CardImage = React.forwardRef<
   HTMLImageElement,
   React.ImgHTMLAttributes<HTMLImageElement>
 >(({ className, src, alt = '', ...props }, ref) => (
-  <div className="h-60 bg-neutral-20 flex items-center justify-center overflow-hidden relative">
+  <div className="bg-neutral-20 flex items-center justify-center overflow-hidden relative">
     {src ? (
       <img
         ref={ref}

@@ -80,12 +80,20 @@ export const ControleDeAcesso: React.FC = () => {
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.4 }}
                         >
-                          <Link to={heroControleDeAcesso.cta.href}>
-                            <Button variant="ctaSoft" size="lg" className="group">
+                          <Button variant="ctaSoft" size="lg" className="group" asChild>
+                            <a
+                              href={heroControleDeAcesso.cta.href}
+                              onClick={(e) => {
+                                e.preventDefault()
+                                document
+                                  .getElementById('controle-de-acesso-products')
+                                  ?.scrollIntoView({ behavior: 'smooth' })
+                              }}
+                            >
                               {heroControleDeAcesso.cta.label}
                               <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
-                            </Button>
-                          </Link>
+                            </a>
+                          </Button>
                         </motion.div>
                       </motion.div>
                     </AnimatePresence>
@@ -99,6 +107,7 @@ export const ControleDeAcesso: React.FC = () => {
 
       {/* Products */}
       <section
+        id="controle-de-acesso-products"
         className="py-16 md:py-24 bg-neutral-5"
         data-testid="featured-products-section"
         aria-label="Destaques Recentes"
@@ -140,7 +149,7 @@ export const ControleDeAcesso: React.FC = () => {
                   <CardImage
                     src={product.image}
                     alt={product.name}
-                    className="max-h-full p-6 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                    className="h-60 p-6 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                   ></CardImage>
                   <CardHeader>
                     <CardTag className="flex flex-wrap gap-2 mb-2">

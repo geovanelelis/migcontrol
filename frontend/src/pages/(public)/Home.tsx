@@ -2,6 +2,8 @@ import { Button } from '../../components/ui/button.tsx'
 import { motion } from 'framer-motion'
 import { ArrowDown, Clock, ShieldCheck, ArrowRight } from 'lucide-react'
 import heroBg from '../../assets/hero-bg.png'
+import cardPonto from '../../assets/card-ponto.png'
+import cardAcesso from '../../assets/card-acesso.png'
 import { differentials } from '../../data/mockData.ts'
 
 import {
@@ -23,7 +25,9 @@ const cards = [
     title: 'Gestão de Ponto & RH',
     description:
       'Segurança jurídica e automação total. Controle jornadas, extras e ausências com tecnologia 100% adequada à Portaria 671.',
+    image: cardPonto,
     cta: 'CONHECER SOLUÇÕES DE PONTO',
+    link: '/controle-de-ponto',
   },
   {
     id: 'acesso',
@@ -32,7 +36,9 @@ const cards = [
     title: 'Segurança & Acesso',
     description:
       'Proteção e fluxo inteligente para o seu patrimônio. Gestão biométrica e facial para condomínios, escolas e áreas restritas.',
+    image: cardAcesso,
     cta: 'CONHECER CONTROLE DE ACESSO',
+    link: '/controle-de-acesso',
   },
 ]
 
@@ -89,7 +95,13 @@ export const Home = () => {
               className="mt-12"
             >
               <Button variant="whiteSoft" size="lg" asChild>
-                <a href="#ponto" className="inline-flex items-center gap-2">
+                <a
+                  href="#cards"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    document.getElementById('cards')?.scrollIntoView({ behavior: 'smooth' })
+                  }}
+                >
                   Escolha o Seu Caminho
                   <ArrowDown className="size-4.5 animate-bounce" />
                 </a>
@@ -100,12 +112,17 @@ export const Home = () => {
       </section>
 
       {/* Cards Section */}
-      <section id="ponto" className="relative z-20 -mt-20 lg:-mt-26 pb-28">
+      <section id="cards" className="relative z-20 -mt-20 lg:-mt-26 pb-28">
         <div className="container px-4 lg:px-8 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-4">
             {cards.map((card, i) => (
-              <Card key={card.id} id={card.id} index={i} className="group">
-                <CardImage alt={card.title} />
+              <Card
+                key={card.id}
+                id={card.id}
+                index={i}
+                className="group border-0 shadow-md hover:shadow-xl"
+              >
+                <CardImage src={card.image} alt={card.title} />
 
                 <CardHeader>
                   <CardTag>{card.tag}</CardTag>
@@ -116,9 +133,11 @@ export const Home = () => {
                 </CardHeader>
 
                 <CardFooter>
-                  <Button variant="cta" size="lg" className="w-full">
-                    {card.cta}
-                    <ArrowRight className="size-4.5 ml-1 group-hover:translate-x-0.5 transition-transform" />
+                  <Button variant="cta" size="lg" className="w-full" asChild>
+                    <a href={card.link}>
+                      {card.cta}
+                      <ArrowRight className="size-4.5 ml-1 group-hover:translate-x-0.5 transition-transform" />
+                    </a>
                   </Button>
                 </CardFooter>
               </Card>
@@ -192,18 +211,18 @@ export const Home = () => {
                 garantindo que sua operação nunca pare.
               </p>
               <div>
-                <a
-                  href="#footer"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    document.getElementById('footer')?.scrollIntoView({ behavior: 'smooth' })
-                  }}
-                >
-                  <Button variant="primaryOutline" size="lg">
+                <Button variant="primaryOutline" size="lg" asChild>
+                  <a
+                    href="#footer"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      document.getElementById('footer')?.scrollIntoView({ behavior: 'smooth' })
+                    }}
+                  >
                     Sobre nós
                     <ArrowRight className="size-4" />
-                  </Button>
-                </a>
+                  </a>
+                </Button>
               </div>
             </motion.div>
           </div>

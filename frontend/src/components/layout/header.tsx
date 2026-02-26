@@ -12,28 +12,16 @@ const pontoProducts = getProductsByCategory('ponto')
 const acessoProducts = getProductsByCategory('acesso')
 
 export const Header: React.FC = () => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [pontoDropdownOpen, setPontoDropdownOpen] = useState(false)
+  const [acessoDropdownOpen, setAcessoDropdownOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [mobileProductsOpen, setMobileProductsOpen] = useState(false)
+  const [mobilePontoOpen, setMobilePontoOpen] = useState(false)
+  const [mobileAcessoOpen, setMobileAcessoOpen] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
 
-  const shouldShowProducts =
-    location.pathname === '/controle-de-ponto' || location.pathname === '/controle-de-acesso'
-
-  const currentProductCategory =
-    location.pathname === '/controle-de-ponto'
-      ? 'ponto'
-      : location.pathname === '/controle-de-acesso'
-        ? 'acesso'
-        : null
-
-  const visibleProducts =
-    currentProductCategory === 'ponto'
-      ? pontoProducts
-      : currentProductCategory === 'acesso'
-        ? acessoProducts
-        : []
+  const isPontoPage = location.pathname === '/controle-de-ponto'
+  const isAcessoPage = location.pathname === '/controle-de-acesso'
 
   function scrollToFooter(duration = 1000) {
     const footer = document.getElementById('footer')
@@ -64,6 +52,130 @@ export const Header: React.FC = () => {
     [location.pathname, navigate],
   )
 
+  const CategoryDropdown = ({
+    label,
+    to,
+    products,
+    isActive,
+    open,
+    setOpen,
+  }: {
+    label: string
+    to: string
+    products: typeof pontoProducts
+    isActive: boolean
+    open: boolean
+    setOpen: (v: boolean) => void
+  }) => (
+    <div
+      className="relative"
+      onMouseEnter={() => isActive && setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <Button variant="neutralGhost" size="md" asChild>
+        <Link to={to} className="flex items-center gap-1">
+          {label}
+
+          {isActive && (
+            <ChevronDown
+              className={cn('size-4 transition-transform duration-200', open && 'rotate-180')}
+            />
+          )}
+        </Link>
+      </Button>
+
+      <AnimatePresence>
+        {isActive && open && (
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: -4 }}
+            exit={{ opacity: 0, y: 8 }}
+            transition={{ duration: 0.2 }}
+            className="absolute left-1/2 -translate-x-1/2 top-full mt-1 border-t-8 border-t-primary-2 bg-neutral-0 rounded-xl border border-neutral-20 shadow-lg w-80"
+          >
+            <div className="p-6">
+              <ul className="space-y-2">
+                {products.map((p) => (
+                  <li key={p.id}>
+                    <Link
+                      to={p.link}
+                      onClick={() => setOpen(false)}
+                      className="flex items-center gap-3 rounded-lg p-2 text-neutral-90 hover:text-primary-2 hover:bg-neutral-10 transition-colors"
+                    >
+                      <img src={p.icon} alt="" className="size-6 object-contain" />
+                      <span className="text-sm font-medium">{p.name}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+
+  const MobileCategoryDropdown = ({
+    label,
+    to,
+    products,
+    isActive,
+    open,
+    setOpen,
+  }: {
+    label: string
+    to: string
+    products: typeof pontoProducts
+    isActive: boolean
+    open: boolean
+    setOpen: (v: boolean) => void
+  }) => (
+    <>
+      <button
+        onClick={() => {
+          if (isActive) {
+            setOpen(!open)
+          }
+        }}
+        className="flex items-center justify-between w-full px-4 py-3 text-sm font-medium text-neutral-90 hover:text-primary-2 hover:bg-neutral-10 rounded-lg transition-colors"
+      >
+        <Link to={to} onClick={() => setMobileOpen(false)} className="flex-1 text-left">
+          {label}
+        </Link>
+
+        {isActive && (
+          <ChevronDown className={cn('h-4 w-4 transition-transform', open && 'rotate-180')} />
+        )}
+      </button>
+
+      <AnimatePresence>
+        {isActive && open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="overflow-hidden"
+          >
+            <div className="pl-4 space-y-1">
+              {products.map((p) => (
+                <Link
+                  key={p.id}
+                  to={p.link}
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center gap-2 px-4 py-2 text-sm text-neutral-70 hover:text-primary-2 hover:bg-neutral-10 rounded-lg transition-colors"
+                >
+                  <img src={p.icon} className="w-5 h-5 object-contain" />
+                  {p.name}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  )
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-neutral-0/80 border-b border-neutral-20">
       <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
@@ -79,77 +191,25 @@ export const Header: React.FC = () => {
             role="navigation"
             aria-label="Navegação principal"
           >
-            {/* Produtos Dropdown */}
-            {shouldShowProducts && (
-              <div
-                className="relative"
-                onMouseEnter={() => setIsDropdownOpen(true)}
-                onMouseLeave={() => setIsDropdownOpen(false)}
-              >
-                <Button
-                  variant="neutralGhost"
-                  aria-expanded={isDropdownOpen}
-                  aria-haspopup="true"
-                  data-testid="nav-produtos-trigger"
-                >
-                  Produtos
-                  <ChevronDown
-                    className={cn(
-                      'size-4 transition-transform duration-200',
-                      isDropdownOpen && 'rotate-180',
-                    )}
-                  />
-                </Button>
+            {/* Dropdown */}
+            <CategoryDropdown
+              label="Controle de Ponto"
+              to="/controle-de-ponto"
+              products={pontoProducts}
+              isActive={isPontoPage}
+              open={pontoDropdownOpen}
+              setOpen={setPontoDropdownOpen}
+            />
 
-                <AnimatePresence>
-                  {isDropdownOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 8 }}
-                      transition={{ duration: 0.15 }}
-                      className="absolute left-1/2 -translate-x-1/2 top-full mt-1 bg-neutral-0 rounded-xl border border-neutral-20 shadow-lg w-80"
-                      role="menu"
-                      data-testid="produtos-dropdown"
-                    >
-                      <div className="p-6">
-                        <ul className="space-y-2">
-                          {visibleProducts.map((p) => (
-                            <li key={p.id}>
-                              <Link
-                                to={p.link}
-                                className="flex items-center gap-3 rounded-lg p-2 text-neutral-90 hover:text-primary-2 hover:bg-neutral-10 transition-colors"
-                                onClick={() => setIsDropdownOpen(false)}
-                                data-testid={`dropdown-product-${p.slug}`}
-                              >
-                                <img
-                                  src={p.icon}
-                                  alt=""
-                                  className="size-6 object-contain"
-                                  aria-hidden="true"
-                                />
-                                <span className="text-sm font-medium">{p.name}</span>
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            )}
+            <CategoryDropdown
+              label="Controle de Acesso"
+              to="/controle-de-acesso"
+              products={acessoProducts}
+              isActive={isAcessoPage}
+              open={acessoDropdownOpen}
+              setOpen={setAcessoDropdownOpen}
+            />
 
-            <Button variant="neutralGhost" size="md" asChild>
-              <Link to="/controle-de-ponto" data-testid="nav-ponto-link">
-                Controle de Ponto
-              </Link>
-            </Button>
-            <Button variant="neutralGhost" size="md" asChild>
-              <Link to="/controle-de-acesso" data-testid="nav-acesso-link">
-                Controle de Acesso
-              </Link>
-            </Button>
             <Button variant="neutralGhost" size="md" asChild>
               <Link to="/blog" data-testid="nav-blog-link">
                 Blog
@@ -200,66 +260,23 @@ export const Header: React.FC = () => {
                 {/* Mobile Navigation */}
                 <nav className="flex-1 overflow-y-auto p-4 space-y-1" aria-label="Menu mobile">
                   {/* Produtos Toggle */}
-                  {shouldShowProducts && (
-                    <>
-                      <button
-                        onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-                        className="flex items-center justify-between w-full px-4 py-3 text-sm font-medium text-neutral-90 hover:text-primary-2 hover:bg-neutral-10 rounded-lg transition-colors"
-                        data-testid="mobile-produtos-trigger"
-                      >
-                        Produtos
-                        <ChevronDown
-                          className={cn(
-                            'h-4 w-4 transition-transform',
-                            mobileProductsOpen && 'rotate-180',
-                          )}
-                        />
-                      </button>
-                      <AnimatePresence>
-                        {mobileProductsOpen && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: 'auto', opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="overflow-hidden"
-                          >
-                            <div className="pl-4 space-y-1">
-                              {visibleProducts.map((p) => (
-                                <Link
-                                  key={p.id}
-                                  to={p.link}
-                                  onClick={() => setMobileOpen(false)}
-                                  className="flex items-center gap-2 px-4 py-2 text-sm text-neutral-70 hover:text-primary-2 hover:bg-neutral-10 rounded-lg transition-colors"
-                                  data-testid={`mobile-product-${p.slug}`}
-                                >
-                                  <img src={p.icon} alt="" className="w-5 h-5 object-contain" />
-                                  {p.name}
-                                </Link>
-                              ))}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </>
-                  )}
-
-                  <Link
+                  <MobileCategoryDropdown
+                    label="Controle de Ponto"
                     to="/controle-de-ponto"
-                    onClick={() => setMobileOpen(false)}
-                    className="block px-4 py-3 text-sm font-medium text-neutral-90 hover:text-primary-2 hover:bg-neutral-10 rounded-lg transition-colors"
-                    data-testid="mobile-ponto-link"
-                  >
-                    Controle de Ponto
-                  </Link>
-                  <Link
+                    products={pontoProducts}
+                    isActive={isPontoPage}
+                    open={mobilePontoOpen}
+                    setOpen={setMobilePontoOpen}
+                  />
+
+                  <MobileCategoryDropdown
+                    label="Controle de Acesso"
                     to="/controle-de-acesso"
-                    onClick={() => setMobileOpen(false)}
-                    className="block px-4 py-3 text-sm font-medium text-neutral-90 hover:text-primary-2 hover:bg-neutral-10 rounded-lg transition-colors"
-                    data-testid="mobile-acesso-link"
-                  >
-                    Controle de Acesso
-                  </Link>
+                    products={acessoProducts}
+                    isActive={isAcessoPage}
+                    open={mobileAcessoOpen}
+                    setOpen={setMobileAcessoOpen}
+                  />
                   <Link
                     to="/blog"
                     onClick={() => setMobileOpen(false)}

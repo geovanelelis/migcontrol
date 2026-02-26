@@ -1,4 +1,13 @@
 import type { Product, BlogPost, HeroSlide, Differential } from '../types'
+import imageIdBlockNext from '../assets/products/iDBlock-Next.png'
+import imageIDClassFacial from '../assets/products/REP-iDClass-Facial.png'
+import imageIDFace from '../assets/products/iDFace.png'
+import imageIDClass671 from '../assets/products/iDClass-671.png'
+import imageIDSecureCloud from '../assets/products/iDSecure-Cloud.png'
+import imageIDFaceMax from '../assets/products/iDFace-Max.png'
+import imageIDFlexPro from '../assets/products/iDFlex-Pro.png'
+import imageSoftwareRHID from '../assets/products/RHID.png'
+import logoMigControl from '../assets//logos/logo-mig-control.png'
 
 const SITE_URL = 'https://mig-controlteste.vercel.app'
 
@@ -9,7 +18,7 @@ export const heroSlides: HeroSlide[] = [
     title: 'Registro ágil e sem filas para o ponto dos Colaboradores',
     description:
       'Chega de burocracia e filas! Com as soluções de controle de ponto da Mig Control, seus colaboradores registram a entrada e saída de forma rápida e intuitiva.',
-    cta: { label: 'Conheça nossos produtos', href: '/controle-de-ponto' },
+    cta: { label: 'Conheça nossos produtos', href: '#controle-de-ponto-products' },
   },
   {
     image: `${SITE_URL}/assets/images/home/banner3.png`,
@@ -17,7 +26,7 @@ export const heroSlides: HeroSlide[] = [
     title: 'Controle e Segurança no Acesso à sua Empresa',
     description:
       'Proteja o que é mais importante para sua empresa com as soluções de controle de acesso da Mig Control. Garanta a segurança de seus colaboradores, ativos e informações.',
-    cta: { label: 'Conheça nossos produtos', href: '/controle-de-acesso' },
+    cta: { label: 'Conheça nossos produtos', href: '#controle-de-acesso-products' },
   },
 ]
 
@@ -30,9 +39,9 @@ export const products: Product[] = [
     description: 'Registro de ponto com reconhecimento facial e impressão de comprovante.',
     longDescription:
       'O iDClass Facial oferece controle de ponto por reconhecimento facial com tela touchscreen colorida, impressora térmica integrada e múltiplas formas de identificação.',
-    image: `${SITE_URL}/assets/images/produtos/REP-iDClass-Facial-Frontal.png`,
+    image: imageIDClassFacial,
     category: ['ponto'],
-    icon: `${SITE_URL}/assets/icons/icon-facial.png`,
+    icon: imageIDClassFacial,
     tags: ['Inovação', 'Eficiência', 'Segurança'],
     features: [
       'Reconhecimento facial com alta precisão',
@@ -81,9 +90,9 @@ export const products: Product[] = [
     description: 'Controle de ponto por reconhecimento facial com alta precisão e velocidade.',
     longDescription:
       'O iDFace é um terminal versátil de reconhecimento facial ideal para controle de acesso e ponto, com processamento rápido e múltiplas opções de identificação.',
-    image: `${SITE_URL}/assets/images/produtos/iDFace-Frontal.png`,
+    image: imageIDFace,
     category: ['ponto', 'acesso'],
-    icon: `${SITE_URL}/assets/icons/icon-registrador.png`,
+    icon: imageIDFace,
     tags: ['Inovação', 'Eficiência', 'Segurança'],
     features: [
       'Reconhecimento facial com detecção de vivacidade',
@@ -128,9 +137,9 @@ export const products: Product[] = [
       'Totalmente adequado à Portaria 671, o REP iDClass 671 combina biometria, cartão e senha para um controle de ponto seguro e preciso.',
     longDescription:
       'O iDClass 671 é um Registrador Eletrônico de Ponto (REP) totalmente adequado à Portaria 671 do Ministério do Trabalho. Combina múltiplas formas de identificação — biometria digital, cartão de proximidade e senha — para garantir a máxima segurança e precisão no registro de ponto dos colaboradores.',
-    image: `${SITE_URL}/assets/images/produtos/iDClass-671.png`,
+    image: imageIDClass671,
     category: ['ponto'],
-    icon: `${SITE_URL}/assets/icons/icon-registrador.png`,
+    icon: imageIDClass671,
     tags: ['Conformidade', 'Produtividade', 'Confiabilidade'],
     features: [
       'Adequado à Portaria 671',
@@ -184,9 +193,9 @@ export const products: Product[] = [
       'Controle de acesso inteligente e centralizado, com gestão de pessoas e veículos em tempo real.',
     longDescription:
       'O iDSecure Cloud é uma plataforma de controle de acesso 100% em nuvem que permite a gestão centralizada de pessoas, veículos e visitantes em tempo real. Com interface intuitiva e responsiva, oferece relatórios detalhados, integração com câmeras de segurança, controle de elevadores e áreas restritas.',
-    image: `${SITE_URL}/assets/images/produtos/iDSecure-Cloud.png`,
+    image: imageIDSecureCloud,
     category: ['acesso'],
-    icon: `${SITE_URL}/assets/icons/icon-software-acessos.png`,
+    icon: imageIDSecureCloud,
     tags: ['Segurança', 'Gerenciamento', 'Escalabilidade'],
     features: [
       'Plataforma 100% em nuvem',
@@ -210,7 +219,7 @@ export const products: Product[] = [
           'Pré-cadastro, autorizações temporárias e registro fotográfico de cada acesso de visitantes.',
       },
       {
-        icon: `${SITE_URL}/assets/icons/regulation.png`,
+        icon: `${SITE_URL}/assets/icons/conformidade.png`,
         title: 'Relatórios em Tempo Real',
         description:
           'Dashboards intuitivos com informações detalhadas sobre acessos, horários e áreas frequentadas.',
@@ -242,9 +251,9 @@ export const products: Product[] = [
       'Tecnologia de reconhecimento facial com detecção de vivacidade e capacidade para até 100 mil faces.',
     longDescription:
       'O iDFace Max é um terminal de reconhecimento facial de alta performance, ideal para controle de acesso em empresas de grande porte. Com tecnologia de ponta em detecção de vivacidade (anti-spoofing), câmera dupla com infravermelho e capacidade para armazenar até 100.000 faces.',
-    image: `${SITE_URL}/assets/images/produtos/iDFace-Max-Frontal.png`,
+    image: imageIDFaceMax,
     category: ['acesso'],
-    icon: `${SITE_URL}/assets/icons/icon-facial.png`,
+    icon: imageIDFace,
     tags: ['Segurança', 'Inovação', 'Eficiência'],
     features: [
       'Reconhecimento facial com detecção de vivacidade',
@@ -322,9 +331,9 @@ export const products: Product[] = [
     description: 'Controlador multifuncional com suporte a múltiplos tipos de acesso.',
     longDescription:
       'O iDFlex Pro é um controlador de acesso avançado que integra múltiplas funcionalidades em um único equipamento, oferecendo flexibilidade máxima para diferentes tipos de autenticação e controle.',
-    image: `${SITE_URL}/assets/images/produtos/iDFlex-Pro.png`,
+    image: imageIDFlexPro,
     category: ['acesso'],
-    icon: `${SITE_URL}/assets/icons/icon-controlador.png`,
+    icon: imageIDFlexPro,
     tags: ['Multifuncional', 'Integração', 'Eficiência'],
     features: [
       'Suporte a múltiplas formas de acesso',
@@ -336,7 +345,7 @@ export const products: Product[] = [
     ],
     highlights: [
       {
-        icon: `${SITE_URL}/assets/icons/icon-controlador.png`,
+        icon: `${SITE_URL}/assets/icons/smartphone.png`,
         title: 'Controle Multifuncional',
         description: 'Gerencia múltiplas portas e dispositivos em um único equipamento.',
       },
@@ -346,7 +355,7 @@ export const products: Product[] = [
         description: 'Compatível com leitores, sensores e equipamentos diversos.',
       },
       {
-        icon: `${SITE_URL}/assets/icons/design.png`,
+        icon: `${SITE_URL}/assets/icons/settings.png`,
         title: 'Backup Local',
         description: 'Funciona mesmo sem conexão de internet com armazenamento local.',
       },
@@ -369,9 +378,9 @@ export const products: Product[] = [
       'Catraca de acesso com design moderno, leitura biométrica e integração com sistemas de controle de acesso.',
     longDescription:
       'A Catraca iD Block Next combina design moderno com tecnologia de ponta para controle de acesso físico. Com leitura biométrica, cartão de proximidade e reconhecimento facial, oferece múltiplas formas de identificação.',
-    image: `${SITE_URL}/assets/images/produtos/iDBlock-Next.png`,
+    image: imageIdBlockNext,
     category: ['acesso'],
-    icon: `${SITE_URL}/assets/icons/icon-catraca.png`,
+    icon: imageIdBlockNext,
     tags: ['Segurança', 'Design', 'Agilidade'],
     features: [
       'Design moderno e compacto',
@@ -426,9 +435,9 @@ export const products: Product[] = [
       'Controle de ponto 100% web com gestão de jornadas, férias e horas extras em uma só plataforma.',
     longDescription:
       'O RHID é um software de apuração de ponto 100% web que centraliza toda a gestão de jornadas de trabalho em uma única plataforma. Permite o controle de férias, horas extras, banco de horas, escalas e abonos com total rastreabilidade.',
-    image: `${SITE_URL}/assets/images/produtos/RHID.png`,
+    image: imageSoftwareRHID,
     category: ['ponto'],
-    icon: `${SITE_URL}/assets/icons/icon-software-apura.png`,
+    icon: imageSoftwareRHID,
     tags: ['Gestão de RH', 'Otimização', 'Acessibilidade'],
     features: [
       'Plataforma 100% web',
@@ -550,7 +559,7 @@ export const blogPosts: BlogPost[] = [
     image:
       'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&auto=format&fit=crop&q=60',
     author: 'Equipe Mig Control',
-    authorAvatar: new URL('../logos/logo-mig-control.png', import.meta.url).href,
+    authorAvatar: logoMigControl,
     date: '2025-01-15',
     category: 'Legislação',
     readTime: '5 min',
@@ -607,7 +616,7 @@ export const blogPosts: BlogPost[] = [
     image:
       'https://images.unsplash.com/photo-1555421689-d68471e189f2?w=800&auto=format&fit=crop&q=60',
     author: 'Equipe Mig Control',
-    authorAvatar: new URL('../logos/logo-mig-control.png', import.meta.url).href,
+    authorAvatar: logoMigControl,
     date: '2025-02-03',
     category: 'Tecnologia',
     readTime: '4 min',
@@ -649,7 +658,7 @@ export const blogPosts: BlogPost[] = [
     image:
       'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop&q=60',
     author: 'Equipe Mig Control',
-    authorAvatar: new URL('../logos/logo-mig-control.png', import.meta.url).href,
+    authorAvatar: logoMigControl,
     date: '2025-01-28',
     category: 'Segurança',
     readTime: '6 min',
@@ -698,7 +707,7 @@ export const blogPosts: BlogPost[] = [
     image:
       'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&auto=format&fit=crop&q=60',
     author: 'Equipe Mig Control',
-    authorAvatar: new URL('../logos/logo-mig-control.png', import.meta.url).href,
+    authorAvatar: logoMigControl,
     date: '2024-12-20',
     category: 'Gestão',
     readTime: '5 min',
@@ -736,7 +745,7 @@ export const blogPosts: BlogPost[] = [
     image:
       'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&auto=format&fit=crop&q=60',
     author: 'Equipe Mig Control',
-    authorAvatar: new URL('../logos/logo-mig-control.png', import.meta.url).href,
+    authorAvatar: logoMigControl,
     date: '2025-02-10',
     category: 'Guia',
     readTime: '7 min',
@@ -779,7 +788,7 @@ export const blogPosts: BlogPost[] = [
     image:
       'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&auto=format&fit=crop&q=60',
     author: 'Equipe Mig Control',
-    authorAvatar: new URL('../logos/logo-mig-control.png', import.meta.url).href,
+    authorAvatar: logoMigControl,
     date: '2025-01-05',
     category: 'Tecnologia',
     readTime: '4 min',
