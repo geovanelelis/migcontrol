@@ -6,7 +6,7 @@ import LogoMigControl from '../../assets/logos/logo-completa-mig-control.svg?rea
 export const Footer: React.FC = () => {
   return (
     <footer id="footer" className="bg-neutral-90 text-neutral-30" data-testid="main-footer">
-      <div className="container mx-auto px-6 md:px-8 lg:px-10 max-w-7xl">
+      <div className="container mx-auto px-6 md:px-8 lg:px-10">
         {/* Main footer */}
         <div className="flex flex-col flex-wrap items-start justify-between md:flex-row gap-14 py-16">
           {/* Info */}

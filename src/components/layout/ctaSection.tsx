@@ -18,9 +18,9 @@ const CTASection: React.FC = () => {
       data-testid="cta-section"
       aria-label="Chamada para ação"
     >
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
+      <div className="container mx-auto px-6 md:px-8 lg:px-10">
         <div className="relative overflow-hidden">
-          <div className="relative grid grid-cols-1 lg:grid-cols-2 items-center justify-between">
+          <div className="relative grid grid-cols-1 lg:grid-cols-2 items-center justify-between md:gap-8">
             {/* Text Content */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -54,7 +54,7 @@ const CTASection: React.FC = () => {
                     className="flex items-center gap-3"
                   >
                     <div className="w-8 h-8 rounded-lg bg-primary-3/20 flex items-center justify-center shrink-0">
-                      <item.icon className="h-4 w-4 text-primary-1" />
+                      <item.icon className="size-4 text-primary-1" />
                     </div>
                     <span className="text-sm text-neutral-30">{item.label}</span>
                   </motion.div>
@@ -74,7 +74,7 @@ const CTASection: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Phone className="h-4 w-4" />
+                  <Phone className="size-4" />
                   SOLICITAR CONSULTORIA GRATUITA
                 </a>
               </Button>
@@ -91,7 +91,7 @@ const CTASection: React.FC = () => {
               <img
                 src={`${SITE_URL}/assets/images/banner-forms.png`}
                 alt="Profissional com notebook"
-                className="absolute object-cover object-top h-full"
+                className="absolute object-contain object-bottom h-full"
               />
             </motion.div>
           </div>

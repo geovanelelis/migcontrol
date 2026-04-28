@@ -41,8 +41,8 @@ export const ControleDeAcesso: React.FC = () => {
                 <div className="absolute inset-0 bg-linear-to-r from-neutral-90/85 via-neutral-90/60 to-transparent" />
 
                 {/* Content */}
-                <div className="relative h-full container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl flex items-center">
-                  <div className="max-w-xl space-y-6">
+                <div className="relative h-full container mx-auto px-6 md:px-8 lg:px-10 flex items-center">
+                  <div className="max-w-3xl space-y-6">
                     <AnimatePresence mode="wait">
                       <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -112,7 +112,7 @@ export const ControleDeAcesso: React.FC = () => {
         data-testid="featured-products-section"
         aria-label="Destaques Recentes"
       >
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
+        <div className="container mx-auto px-6 md:px-8 lg:px-10 ">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -123,16 +123,16 @@ export const ControleDeAcesso: React.FC = () => {
             <span className="text-sm font-semibold tracking-wider uppercase text-primary-2">
               Destaques Recentes
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-neutral-90 mt-2">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-primary-4 mt-2">
               Conheça nossos principais produtos
             </h2>
-            <p className="text-base text-neutral-60 mt-3 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base text-primary-4 mt-3 max-w-2xl mx-auto leading-relaxed">
               Oferecemos aos nossos clientes um amplo portfólio de produtos, soluções e serviços
               através de um único fornecedor.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
             {products.map((product, index) => (
               <motion.div
                 key={product.id}
@@ -141,36 +141,36 @@ export const ControleDeAcesso: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
               >
-                <Card
-                  className="group h-full"
-                  role="article"
-                  data-testid={`product-card-${product.slug}`}
-                >
-                  <CardImage
-                    src={product.image}
-                    alt={product.name}
-                    className="h-60 p-6 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-                  ></CardImage>
-                  <CardHeader>
-                    <CardTag className="flex flex-wrap gap-2 mb-2">
-                      {product.tags.map((tag) => (
-                        <Badge key={tag} variant="secondary" size="sm">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </CardTag>
-                    <CardTitle>{product.name}</CardTitle>
-                    <CardDescription>{product.description}</CardDescription>
-                  </CardHeader>
-                  <CardFooter className="mt-auto pt-0">
-                    <Link to={product.link} className="w-full">
-                      <Button variant="neutral">
+                <Link to={product.link} className="w-full">
+                  <Card
+                    className="group h-full"
+                    role="article"
+                    data-testid={`product-card-${product.slug}`}
+                  >
+                    <CardImage
+                      src={product.image}
+                      alt={product.name}
+                      className="h-60 p-6 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                    ></CardImage>
+                    <CardHeader>
+                      <CardTag className="flex flex-wrap gap-2 mb-2">
+                        {product.tags.map((tag) => (
+                          <Badge key={tag} variant="primaryGhost" size="sm">
+                            {tag}
+                          </Badge>
+                        ))}
+                      </CardTag>
+                      <CardTitle>{product.name}</CardTitle>
+                      <CardDescription>{product.description}</CardDescription>
+                    </CardHeader>
+                    <CardFooter className="mt-auto pt-0">
+                      <Button variant="primary">
                         Saiba mais
                         <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                       </Button>
-                    </Link>
-                  </CardFooter>
-                </Card>
+                    </CardFooter>
+                  </Card>
+                </Link>
               </motion.div>
             ))}
           </div>

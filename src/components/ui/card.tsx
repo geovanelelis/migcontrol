@@ -50,23 +50,22 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
 )
 Card.displayName = 'Card'
 
-export const CardImage = React.forwardRef<
-  HTMLImageElement,
-  React.ImgHTMLAttributes<HTMLImageElement>
->(({ className, src, alt = '', ...props }, ref) => (
-  <div className="bg-neutral-20 flex items-center justify-center overflow-hidden relative">
-    {src ? (
-      <img
-        ref={ref}
-        data-slot="cardImage"
-        src={src}
-        alt={alt}
-        className={cn('h-full w-full object-cover', className)}
-        {...props}
-      />
-    ) : null}
-  </div>
-))
+export const CardImage = React.forwardRef<HTMLImageElement, React.ImgHTMLAttributes<HTMLImageElement>>(
+  ({ className, src, alt = '', ...props }, ref) => (
+    <div className="bg-primary-4/10 flex items-center justify-center overflow-hidden relative">
+      {src ? (
+        <img
+          ref={ref}
+          data-slot="cardImage"
+          src={src}
+          alt={alt}
+          className={cn('h-full w-full object-cover', className)}
+          {...props}
+        />
+      ) : null}
+    </div>
+  ),
+)
 CardImage.displayName = 'CardImage'
 
 export const CardIconArea = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
@@ -125,7 +124,7 @@ export const CardTitle = React.forwardRef<
     ref={ref}
     data-slot="cardTitle"
     className={cn(
-      'text-1xl lg:text-2xl font-bold text-neutral-80 leading-tight tracking-tight',
+      'text-1xl lg:text-2xl font-bold text-primary-4 leading-tight tracking-tight',
       className,
     )}
     {...props}
@@ -151,7 +150,7 @@ export const CardContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes
     <div
       ref={ref}
       data-slot="cardContent"
-      className={cn('flex flex-col gap-1 px-7 lg:px-9 text-sm text-neutral-60', className)}
+      className={cn('flex flex-col gap-1 px-7 lg:px-9 text-sm text-primary-4', className)}
       {...props}
     />
   ),

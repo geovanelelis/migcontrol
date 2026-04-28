@@ -5,7 +5,7 @@ import { cn } from '../../lib/utils'
 import { Button } from '../ui/button'
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from '../ui/sheet'
 import { getProductsByCategory } from '../../data/mockData'
-import { useCallback, useState } from 'react'
+import { useCallback, useState, useEffect } from 'react'
 import LogoMigControl from '../../assets/logos/logo-completa-mig-control.svg?react'
 
 const pontoProducts = getProductsByCategory('ponto')
@@ -22,6 +22,24 @@ export const Header: React.FC = () => {
 
   const isPontoPage = location.pathname === '/controle-de-ponto'
   const isAcessoPage = location.pathname === '/controle-de-acesso'
+
+  useEffect(() => {
+    const header = document.querySelector('header')
+    let lastScrollY = window.scrollY
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      if (currentScrollY > lastScrollY) {
+        header?.classList.add('-top-20', 'md:-top-24', 'transition-top', 'duration-300')
+      } else {
+        header?.classList.remove('-top-20', 'md:-top-24')
+      }
+      lastScrollY = currentScrollY
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   function scrollToFooter(duration = 1000) {
     const footer = document.getElementById('footer')
@@ -178,7 +196,7 @@ export const Header: React.FC = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-neutral-0/80 border-b border-neutral-20">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
+      <div className="container mx-auto px-6 md:px-8 lg:px-10">
         <div className="flex items-center justify-between h-18 md:h-22">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 shrink-0" data-testid="header-logo">

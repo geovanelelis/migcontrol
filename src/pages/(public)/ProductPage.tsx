@@ -27,7 +27,7 @@ export const ProductPage: React.FC = () => {
     <div data-testid={`product-page-${product.slug}`}>
       {/* Breadcrumb */}
       <div className="bg-neutral-5 border-b border-neutral-10">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl py-4">
+        <div className="container mx-auto px-6 md:px-8 lg:px-10 max-w-7xl py-4">
           <nav className="flex items-center gap-2 text-sm text-neutral-50" aria-label="Breadcrumb">
             <Link to="/" className="hover:text-primary-2 transition-colors">
               Início
@@ -44,7 +44,7 @@ export const ProductPage: React.FC = () => {
 
       {/* Hero Product Section */}
       <section className="py-12 md:py-20 bg-neutral-0">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
+        <div className="container mx-auto px-6 md:px-8 lg:px-10 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Image */}
             <motion.div
@@ -64,11 +64,7 @@ export const ProductPage: React.FC = () => {
               {/* Floating badges */}
               <div className="absolute top-4 left-4 flex flex-wrap gap-2">
                 {product.tags.map((tag) => (
-                  <Badge
-                    key={tag}
-                    variant="secondary"
-                    className="bg-neutral-0/90 backdrop-blur-sm text-primary-3 text-xs font-medium shadow-sm border-0"
-                  >
+                  <Badge key={tag} variant="white" className="text-primary-3">
                     {tag}
                   </Badge>
                 ))}
@@ -137,7 +133,7 @@ export const ProductPage: React.FC = () => {
       {/* Highlights Section - "Por que escolher" */}
       {product.highlights.length > 0 && (
         <section className="py-16 md:py-24 bg-neutral-5" data-testid="product-highlights">
-          <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
+          <div className="container mx-auto px-6 md:px-8 lg:px-10 max-w-7xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -187,7 +183,7 @@ export const ProductPage: React.FC = () => {
       {/* Specs & Details Section with Tabs */}
       {product.specs.length > 0 && (
         <section className="py-16 md:py-24 bg-neutral-0" data-testid="product-specs">
-          <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
+          <div className="container mx-auto px-6 md:px-8 lg:px-10 max-w-7xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -268,7 +264,7 @@ export const ProductPage: React.FC = () => {
         className="py-16 md:py-20 bg-linear-to-br from-primary-2 to-primary-3"
         data-testid="product-bottom-cta"
       >
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl text-center space-y-6">
+        <div className="container mx-auto px-6 md:px-8 lg:px-10 max-w-7xl text-center space-y-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -306,7 +302,7 @@ export const ProductPage: React.FC = () => {
       {/* Related Products */}
       {relatedProducts.length > 0 && (
         <section className="py-16 md:py-20 bg-neutral-0" aria-label="Produtos relacionados">
-          <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
+          <div className="container mx-auto px-6 md:px-8 lg:px-10 max-w-7xl">
             <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-neutral-90 mb-10">
               Produtos relacionados
             </h2>
@@ -325,7 +321,7 @@ export const ProductPage: React.FC = () => {
                     className="group flex flex-col h-full bg-neutral-0 rounded-2xl border border-neutral-10 hover:border-neutral-20/60 hover:shadow-xl transition-all duration-300 overflow-hidden"
                     data-testid={`related-product-${rp.slug}`}
                   >
-                    <div className="h-48 bg-linear-to-br from-neutral-5 to-primary-0/20 flex items-center justify-center p-8">
+                    <div className="h-48 bg-linear-to-br bg-primary-3/5 flex items-center justify-center p-8">
                       <img
                         src={rp.image}
                         alt={rp.name}
@@ -337,11 +333,7 @@ export const ProductPage: React.FC = () => {
                     <div className="flex flex-col flex-1 p-6">
                       <div className="flex flex-wrap gap-1.5 mb-3">
                         {rp.tags.slice(0, 2).map((tag) => (
-                          <Badge
-                            key={tag}
-                            variant="secondary"
-                            className="text-xs bg-primary-0 text-primary-3 border-0"
-                          >
+                          <Badge key={tag} variant="primaryGhost">
                             {tag}
                           </Badge>
                         ))}
@@ -351,8 +343,8 @@ export const ProductPage: React.FC = () => {
 
                       {/* botão sempre no final */}
                       <div className="mt-auto">
-                        <Button variant="primaryGhost" className="hover:gap-3">
-                          Saiba mais <ArrowRight className="h-4 w-4" />
+                        <Button variant="primary" size="sm">
+                          Saiba mais <ArrowRight className="size-4 group-hover:translate-x-1 transition-all" />
                         </Button>
                       </div>
                     </div>

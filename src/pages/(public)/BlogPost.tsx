@@ -31,7 +31,7 @@ export const BlogPost: React.FC = () => {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-linear-to-t from-neutral-90/90 via-neutral-90/50 to-neutral-90/20" />
-        <div className="relative h-full container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl flex items-end pb-12">
+        <div className="relative h-full container mx-auto px-6 md:px-8 lg:px-10 max-w-7xl flex items-end pb-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -70,7 +70,7 @@ export const BlogPost: React.FC = () => {
 
       {/* Article Content */}
       <section className="py-12 md:py-16">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
+        <div className="container mx-auto px-6 md:px-8 lg:px-10 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             {/* Main Content */}
             <motion.div
@@ -249,7 +249,7 @@ export const BlogPost: React.FC = () => {
 
       {/* Bottom Related Posts */}
       <section className="py-16 bg-neutral-5 border-t border-neutral-10">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
+        <div className="container mx-auto px-6 md:px-8 lg:px-10 max-w-7xl">
           <h2 className="text-2xl font-semibold tracking-tight text-neutral-90 mb-10">
             Artigos relacionados
           </h2>
