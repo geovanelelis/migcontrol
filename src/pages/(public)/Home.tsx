@@ -40,7 +40,7 @@ export const Home = () => {
   return (
     <div className="min-h-screen bg-neutral-0">
       {/* ═══════════════════════════════════════════════════════ HERO */}
-      <section className="relative w-full flex flex-col items-center overflow-hidden gap-8 pb-6 pt-34">
+      <section className="relative w-full flex flex-col items-center overflow-hidden gap-8 xl:pb-6 pt-34">
         {/* Background image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -65,7 +65,7 @@ export const Home = () => {
             transition={{ duration: 0.7, delay: 0.12, ease: 'easeOut' }}
             className="mb-6"
           >
-            <h1 className="text-neutral-0 tracking-tight">
+            <h1 className="text-neutral-0 tracking-tight text-center">
               <span className="font-medium text-xl md:text-2xl lg:text-3xl">
                 a evolução do controle e da gestão
               </span>{' '}
@@ -149,7 +149,7 @@ export const Home = () => {
 
       {/* ══════════════════════════════════════════════ INSTITUCIONAL */}
       <section
-        className="py-24 md:py-36 bg-neutral-0"
+        className="pt-8 pb-24 xl:pt-18 xl:pb-36 bg-neutral-0"
         data-testid="institutional-section"
         aria-label="Sobre a Mig Control"
       >

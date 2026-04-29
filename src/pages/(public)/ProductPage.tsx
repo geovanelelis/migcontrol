@@ -27,7 +27,7 @@ export const ProductPage: React.FC = () => {
     <div data-testid={`product-page-${product.slug}`}>
       {/* Breadcrumb */}
       <div className="bg-neutral-5 border-b border-neutral-10">
-        <div className="container mx-auto px-6 md:px-8 lg:px-10 max-w-7xl py-4">
+        <div className="container mx-auto px-6 md:px-8 lg:px-10  py-4 pt-22 xl:pt-26">
           <nav className="flex items-center gap-2 text-sm text-neutral-50" aria-label="Breadcrumb">
             <Link to="/" className="hover:text-primary-2 transition-colors">
               Início
@@ -44,7 +44,7 @@ export const ProductPage: React.FC = () => {
 
       {/* Hero Product Section */}
       <section className="py-12 md:py-20 bg-neutral-0">
-        <div className="container mx-auto px-6 md:px-8 lg:px-10 max-w-7xl">
+        <div className="container mx-auto px-6 md:px-8 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Image */}
             <motion.div
@@ -133,7 +133,7 @@ export const ProductPage: React.FC = () => {
       {/* Highlights Section - "Por que escolher" */}
       {product.highlights.length > 0 && (
         <section className="py-16 md:py-24 bg-neutral-5" data-testid="product-highlights">
-          <div className="container mx-auto px-6 md:px-8 lg:px-10 max-w-7xl">
+          <div className="container mx-auto px-6 md:px-8 lg:px-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -151,7 +151,7 @@ export const ProductPage: React.FC = () => {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {product.highlights.map((hl, index) => (
                 <motion.div
                   key={index}
@@ -183,7 +183,7 @@ export const ProductPage: React.FC = () => {
       {/* Specs & Details Section with Tabs */}
       {product.specs.length > 0 && (
         <section className="py-16 md:py-24 bg-neutral-0" data-testid="product-specs">
-          <div className="container mx-auto px-6 md:px-8 lg:px-10 max-w-7xl">
+          <div className="container mx-auto px-6 md:px-8 lg:px-10 ">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -261,10 +261,10 @@ export const ProductPage: React.FC = () => {
 
       {/* CTA Banner */}
       <section
-        className="py-16 md:py-20 bg-linear-to-br from-primary-2 to-primary-3"
+        className="py-16 md:py-20 bg-linear-to-br from-primary-3 to-primary-4"
         data-testid="product-bottom-cta"
       >
-        <div className="container mx-auto px-6 md:px-8 lg:px-10 max-w-7xl text-center space-y-6">
+        <div className="container mx-auto px-6 md:px-8 lg:px-10  text-center space-y-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -302,11 +302,11 @@ export const ProductPage: React.FC = () => {
       {/* Related Products */}
       {relatedProducts.length > 0 && (
         <section className="py-16 md:py-20 bg-neutral-0" aria-label="Produtos relacionados">
-          <div className="container mx-auto px-6 md:px-8 lg:px-10 max-w-7xl">
+          <div className="container mx-auto px-6 md:px-8 lg:px-10 ">
             <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-neutral-90 mb-10">
               Produtos relacionados
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
               {relatedProducts.map((rp, index) => (
                 <motion.div
                   key={rp.id}
@@ -344,7 +344,8 @@ export const ProductPage: React.FC = () => {
                       {/* botão sempre no final */}
                       <div className="mt-auto">
                         <Button variant="primary" size="sm">
-                          Saiba mais <ArrowRight className="size-4 group-hover:translate-x-1 transition-all" />
+                          Saiba mais{' '}
+                          <ArrowRight className="size-4 group-hover:translate-x-1 transition-all" />
                         </Button>
                       </div>
                     </div>

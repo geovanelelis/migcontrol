@@ -8,12 +8,14 @@ import imageIDFaceMax from '../assets/products/iDFace-Max.png'
 import imageIDFlexPro from '../assets/products/iDFlex-Pro.png'
 import imageSoftwareRHID from '../assets/products/RHID.png'
 import logoMigControl from '../assets//logos/logo-mig-control.png'
+import bannerPonto from '../assets/banner-ponto2.png'
+import bannerAcesso from '../assets/card-acesso.png'
 
 const SITE_URL = 'https://mig-controlteste.vercel.app'
 
 export const heroSlides: HeroSlide[] = [
   {
-    image: `${SITE_URL}/assets/images/home/banner2.png`,
+    image: bannerPonto,
     subtitle: '+ Agilidade',
     title: 'Registro ágil e sem filas para o ponto dos Colaboradores',
     description:
@@ -21,7 +23,7 @@ export const heroSlides: HeroSlide[] = [
     cta: { label: 'Conheça nossos produtos', href: '#controle-de-ponto-products' },
   },
   {
-    image: `${SITE_URL}/assets/images/home/banner3.png`,
+    image: bannerAcesso,
     subtitle: '+ Segurança',
     title: 'Controle e Segurança no Acesso à sua Empresa',
     description:

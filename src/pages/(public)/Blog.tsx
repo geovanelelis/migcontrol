@@ -22,7 +22,7 @@ export const Blog: React.FC = () => {
     <div data-testid="blog-page">
       {/* Hero */}
       <section className="py-16 md:pb-20 pt-42 bg-slate-50 border-b border-neutral-10">
-        <div className="container mx-auto px-6 md:px-8 lg:px-10 max-w-7xl">
+        <div className="container mx-auto px-6 md:px-8 lg:px-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -46,7 +46,7 @@ export const Blog: React.FC = () => {
       {/* Featured Post */}
       {activeCategory === 'Todos' && (
         <section className="py-12 md:py-16 bg-neutral-0 border-b border-neutral-10">
-          <div className="container mx-auto px-6 md:px-8 lg:px-10 max-w-7xl">
+          <div className="container mx-auto px-6 md:px-8 lg:px-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -106,7 +106,7 @@ export const Blog: React.FC = () => {
 
       {/* Category Filters + Posts Grid */}
       <section className="py-12 md:py-20 bg-neutral-0">
-        <div className="container mx-auto px-6 md:px-8 lg:px-10 max-w-7xl">
+        <div className="container mx-auto px-6 md:px-8 lg:px-10">
           {/* Category pills */}
           <div className="flex flex-wrap items-center gap-2 mb-10">
             <Tag className="size-4 text-slate-400 mr-1" />

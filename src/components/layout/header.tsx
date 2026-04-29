@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Menu, ChevronDown, Phone, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '../../lib/utils'
@@ -11,6 +11,132 @@ import LogoMigControl from '../../assets/logos/logo-completa-mig-control.svg?rea
 const pontoProducts = getProductsByCategory('ponto')
 const acessoProducts = getProductsByCategory('acesso')
 
+const CategoryDropdown = ({
+  label,
+  to,
+  products,
+  isActive,
+  open,
+  setOpen,
+}: {
+  label: string
+  to: string
+  products: typeof pontoProducts
+  isActive: boolean
+  open: boolean
+  setOpen: (v: boolean) => void
+}) => (
+  <div
+    className="relative"
+    onMouseEnter={() => isActive && setOpen(true)}
+    onMouseLeave={() => setOpen(false)}
+  >
+    <Button variant="neutralGhost" size="md" asChild>
+      <Link to={to} className="flex items-center gap-1">
+        {label}
+
+        {isActive && (
+          <ChevronDown
+            className={cn('size-4 transition-transform duration-200', open && 'rotate-180')}
+          />
+        )}
+      </Link>
+    </Button>
+
+    <AnimatePresence>
+      {isActive && open && (
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: -4 }}
+          exit={{ opacity: 0, y: 8 }}
+          transition={{ duration: 0.2 }}
+          className="absolute left-1/2 -translate-x-1/2 top-full mt-1 border-t-8 border-t-primary-2 bg-neutral-0 rounded-xl border border-neutral-20 shadow-lg w-80"
+        >
+          <div className="p-6">
+            <ul className="space-y-2">
+              {products.map((p) => (
+                <li key={p.id}>
+                  <Link
+                    to={p.link}
+                    onClick={() => setOpen(false)}
+                    className="flex items-center gap-3 rounded-lg p-2 text-neutral-90 hover:text-primary-2 hover:bg-neutral-10 transition-colors"
+                  >
+                    <img src={p.icon} alt="" className="size-6 object-contain" />
+                    <span className="text-sm font-medium">{p.name}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  </div>
+)
+
+const MobileCategoryDropdown = ({
+  label,
+  to,
+  products,
+  isActive,
+  open,
+  setOpen,
+  onMobileClose,
+}: {
+  label: string
+  to: string
+  products: typeof pontoProducts
+  isActive: boolean
+  open: boolean
+  setOpen: (v: boolean) => void
+  onMobileClose: () => void
+}) => (
+  <>
+    <button
+      onClick={() => {
+        if (isActive) {
+          setOpen(!open)
+        }
+      }}
+      className="flex items-center justify-between w-full px-4 py-3 text-sm font-medium text-neutral-90 hover:text-primary-2 hover:bg-neutral-10 rounded-lg transition-colors"
+    >
+      <Link to={to} onClick={() => onMobileClose()} className="flex-1 text-left">
+        {label}
+      </Link>
+
+      {isActive && (
+        <ChevronDown className={cn('h-4 w-4 transition-transform', open && 'rotate-180')} />
+      )}
+    </button>
+
+    <AnimatePresence>
+      {isActive && open && (
+        <motion.div
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: 'auto', opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="overflow-hidden"
+        >
+          <div className="pl-4 space-y-1">
+            {products.map((p) => (
+              <Link
+                key={p.id}
+                to={p.link}
+                onClick={() => onMobileClose()}
+                className="flex items-center gap-2 px-4 py-2 text-sm text-neutral-70 hover:text-primary-2 hover:bg-neutral-10 rounded-lg transition-colors"
+              >
+                <img src={p.icon} className="w-5 h-5 object-contain" />
+                {p.name}
+              </Link>
+            ))}
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  </>
+)
+
 export const Header: React.FC = () => {
   const [pontoDropdownOpen, setPontoDropdownOpen] = useState(false)
   const [acessoDropdownOpen, setAcessoDropdownOpen] = useState(false)
@@ -18,7 +144,6 @@ export const Header: React.FC = () => {
   const [mobilePontoOpen, setMobilePontoOpen] = useState(false)
   const [mobileAcessoOpen, setMobileAcessoOpen] = useState(false)
   const location = useLocation()
-  const navigate = useNavigate()
 
   const isPontoPage = location.pathname === '/controle-de-ponto'
   const isAcessoPage = location.pathname === '/controle-de-acesso'
@@ -67,131 +192,7 @@ export const Header: React.FC = () => {
       setTimeout(() => scrollToFooter(1500), 300)
       setMobileOpen(false)
     },
-    [location.pathname, navigate],
-  )
-
-  const CategoryDropdown = ({
-    label,
-    to,
-    products,
-    isActive,
-    open,
-    setOpen,
-  }: {
-    label: string
-    to: string
-    products: typeof pontoProducts
-    isActive: boolean
-    open: boolean
-    setOpen: (v: boolean) => void
-  }) => (
-    <div
-      className="relative"
-      onMouseEnter={() => isActive && setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
-      <Button variant="neutralGhost" size="md" asChild>
-        <Link to={to} className="flex items-center gap-1">
-          {label}
-
-          {isActive && (
-            <ChevronDown
-              className={cn('size-4 transition-transform duration-200', open && 'rotate-180')}
-            />
-          )}
-        </Link>
-      </Button>
-
-      <AnimatePresence>
-        {isActive && open && (
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: -4 }}
-            exit={{ opacity: 0, y: 8 }}
-            transition={{ duration: 0.2 }}
-            className="absolute left-1/2 -translate-x-1/2 top-full mt-1 border-t-8 border-t-primary-2 bg-neutral-0 rounded-xl border border-neutral-20 shadow-lg w-80"
-          >
-            <div className="p-6">
-              <ul className="space-y-2">
-                {products.map((p) => (
-                  <li key={p.id}>
-                    <Link
-                      to={p.link}
-                      onClick={() => setOpen(false)}
-                      className="flex items-center gap-3 rounded-lg p-2 text-neutral-90 hover:text-primary-2 hover:bg-neutral-10 transition-colors"
-                    >
-                      <img src={p.icon} alt="" className="size-6 object-contain" />
-                      <span className="text-sm font-medium">{p.name}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  )
-
-  const MobileCategoryDropdown = ({
-    label,
-    to,
-    products,
-    isActive,
-    open,
-    setOpen,
-  }: {
-    label: string
-    to: string
-    products: typeof pontoProducts
-    isActive: boolean
-    open: boolean
-    setOpen: (v: boolean) => void
-  }) => (
-    <>
-      <button
-        onClick={() => {
-          if (isActive) {
-            setOpen(!open)
-          }
-        }}
-        className="flex items-center justify-between w-full px-4 py-3 text-sm font-medium text-neutral-90 hover:text-primary-2 hover:bg-neutral-10 rounded-lg transition-colors"
-      >
-        <Link to={to} onClick={() => setMobileOpen(false)} className="flex-1 text-left">
-          {label}
-        </Link>
-
-        {isActive && (
-          <ChevronDown className={cn('h-4 w-4 transition-transform', open && 'rotate-180')} />
-        )}
-      </button>
-
-      <AnimatePresence>
-        {isActive && open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="overflow-hidden"
-          >
-            <div className="pl-4 space-y-1">
-              {products.map((p) => (
-                <Link
-                  key={p.id}
-                  to={p.link}
-                  onClick={() => setMobileOpen(false)}
-                  className="flex items-center gap-2 px-4 py-2 text-sm text-neutral-70 hover:text-primary-2 hover:bg-neutral-10 rounded-lg transition-colors"
-                >
-                  <img src={p.icon} className="w-5 h-5 object-contain" />
-                  {p.name}
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+    [setMobileOpen],
   )
 
   return (
@@ -258,25 +259,24 @@ export const Header: React.FC = () => {
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild className="lg:hidden">
               <Button variant="neutralGhost" size="md" data-testid="mobile-menu-button">
-                <Menu className="h-6 w-6" />
+                <Menu className="h-6 w-6 text-primary-4" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-80 p-0">
+            <SheetContent side="right" className="w-80 p-0 transition-all duration-700">
               <SheetTitle className="sr-only">Menu de navegação</SheetTitle>
               <div className="flex flex-col h-full">
                 {/* Mobile Header */}
-                <div className="flex items-center justify-between px-6 py-6 border-b border-neutral-20">
-                  <LogoMigControl className="h-9 w-auto text-primary-2" />
-                  <Button variant="neutralGhost" className="px-2" asChild>
+                <div className="flex items-center justify-end p-6">
+                  <Button variant="white" className="px-2" asChild>
                     <SheetClose>
-                      <X className="size-6 text-neutral-60" />
+                      <X className="size-6 text-primary-4" />
                       <span className="sr-only">Close</span>
                     </SheetClose>
                   </Button>
                 </div>
 
                 {/* Mobile Navigation */}
-                <nav className="flex-1 overflow-y-auto p-4 space-y-1" aria-label="Menu mobile">
+                <nav className="flex-1 overflow-y-auto px-4 space-y-1" aria-label="Menu mobile">
                   {/* Produtos Toggle */}
                   <MobileCategoryDropdown
                     label="Controle de Ponto"
@@ -285,6 +285,7 @@ export const Header: React.FC = () => {
                     isActive={isPontoPage}
                     open={mobilePontoOpen}
                     setOpen={setMobilePontoOpen}
+                    onMobileClose={() => setMobileOpen(false)}
                   />
 
                   <MobileCategoryDropdown
@@ -294,6 +295,7 @@ export const Header: React.FC = () => {
                     isActive={isAcessoPage}
                     open={mobileAcessoOpen}
                     setOpen={setMobileAcessoOpen}
+                    onMobileClose={() => setMobileOpen(false)}
                   />
                   <Link
                     to="/blog"

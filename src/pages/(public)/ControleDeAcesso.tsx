@@ -30,7 +30,7 @@ export const ControleDeAcesso: React.FC = () => {
         <div className="overflow-hidden">
           <div className="flex">
             <div className="relative w-full ">
-              <div className="relative h-125 md:h-150 lg:h-190">
+              <div className="relative h-160 lg:h-190 pt-18 xl:pt-22">
                 {/* Background image */}
                 <img
                   src={heroControleDeAcesso.image}
@@ -38,11 +38,11 @@ export const ControleDeAcesso: React.FC = () => {
                   className="absolute inset-0 w-full h-full object-cover"
                   aria-hidden="true"
                 />
-                <div className="absolute inset-0 bg-linear-to-r from-neutral-90/85 via-neutral-90/60 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-r from-primary-4/95 via-neutral-100/80 to-neutral-100/50" />
 
                 {/* Content */}
                 <div className="relative h-full container mx-auto px-6 md:px-8 lg:px-10 flex items-center">
-                  <div className="max-w-3xl space-y-6">
+                  <div className="max-w-3xl">
                     <AnimatePresence mode="wait">
                       <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -55,7 +55,7 @@ export const ControleDeAcesso: React.FC = () => {
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.1 }}
-                          className="inline-block text-orange-2 text-sm md:text-base font-semibold tracking-wide uppercase"
+                          className="inline-block text-orange-1 text-sm md:text-base font-semibold tracking-wide uppercase"
                         >
                           {heroControleDeAcesso.subtitle}
                         </motion.span>
@@ -80,7 +80,7 @@ export const ControleDeAcesso: React.FC = () => {
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.4 }}
                         >
-                          <Button variant="ctaSoft" size="lg" className="group" asChild>
+                          <Button variant="ctaSoft" size="lg" className="group mt-6" asChild>
                             <a
                               href={heroControleDeAcesso.cta.href}
                               onClick={(e) => {
